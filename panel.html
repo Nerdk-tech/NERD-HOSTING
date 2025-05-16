@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>K-HOSTING Panel</title>
+  <style>
+    body {
+      background: #0f0f0f;
+      color: white;
+      font-family: 'Orbitron', sans-serif;
+      text-align: center;
+      padding: 2rem;
+    }
+    h1 {
+      color: #00ffff;
+    }
+    .card {
+      background: #1a1a1a;
+      border-radius: 10px;
+      padding: 1rem;
+      margin: 1rem auto;
+      max-width: 400px;
+      box-shadow: 0 0 15px #00ffff88;
+    }
+    input, button {
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      width: 80%;
+      border-radius: 5px;
+      border: none;
+    }
+    button {
+      background: #00ffff;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to K-HOSTING Panel</h1>
+
+  <div class="card">
+    <h3>Deploy a Bot</h3>
+    <form id="deployForm">
+      <input type="text" name="botName" placeholder="Bot Name" required />
+      <input type="text" name="scriptPath" placeholder="Script path (e.g., bots/bot.js)" required />
+      <button type="submit">Deploy</button>
+    </form>
+  </div>
+
+  <a href="/logout" style="color:#00ffff;">Logout</a>
+
+  <script>
+    document.getElementById('deployForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const res = await fetch('/deploy-bot', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          botName: form.botName.value,
+          scriptPath: form.scriptPath.value
+        })
+      });
+      const data = await res.json();
+      alert(data.success ? "Bot deployed!" : data.error);
+    });
+  </script>
+</body>
+</html>
