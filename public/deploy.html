@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Deploy Bot | K-HOSTING</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="matrix"></canvas>
+  <div class="container">
+    <h1>Deploy Your Bot</h1>
+    <form id="deployForm">
+      <input type="file" id="zipFile" required />
+      <input type="text" id="phoneNumber" placeholder="Enter phone number" required />
+      <button class="btn" type="submit">Deploy</button>
+    </form>
+    <pre id="terminalOutput"></pre>
+  </div>
+
+  <script>
+    document.getElementById("deployForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const phone = document.getElementById("phoneNumber").value;
+      const code = "PYVL-" + Math.random().toString(36).substr(2, 4).toUpperCase();
+      document.getElementById("terminalOutput").innerText = `
+Starting deployment...
+Bot file received.
+Phone Number: ${phone}
+Generating pair code...
+Pair Code: ${code}
+Deployment Complete! (fake)
+      `;
+    });
+  </script>
+  <script src="matrix.js"></script>
+</body>
+</html
