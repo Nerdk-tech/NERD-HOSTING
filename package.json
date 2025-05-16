@@ -12,3 +12,4 @@
     "express-session": "^1.17.3",
     "sqlite3": "^5.1.6"
   }
+}
