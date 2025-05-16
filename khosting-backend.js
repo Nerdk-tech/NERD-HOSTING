@@ -16,7 +16,13 @@ app.use(session({
   saveUninitialized: true,
 }));
 
+// Serve static files from public folder
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Serve index.html explicitly on '/'
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // Create users table if it doesn't exist
 db.run("CREATE TABLE IF NOT EXISTS users (" +
